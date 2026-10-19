@@ -125,3 +125,19 @@ Array.prototype.forEach.call(document.querySelectorAll('img'), function (img) {
   window.gtag = function () { window.dataLayer.push(arguments); };
   gtag('js', new Date()); gtag('config', id);
 })();
+
+// ---------- Hamburger menu ----------
+(function () {
+  var bg = $('bg'), menu = $('menu');
+  if (!bg || !menu) return;
+  function setOpen(o) {
+    menu.classList.toggle('o', o);
+    bg.setAttribute('aria-expanded', o ? 'true' : 'false');
+    bg.setAttribute('aria-label', o ? 'Close menu' : 'Open menu');
+  }
+  bg.addEventListener('click', function (e) { e.stopPropagation(); setOpen(!menu.classList.contains('o')); });
+  menu.addEventListener('click', function (e) { if (e.target.tagName === 'A') setOpen(false); });
+  document.addEventListener('click', function (e) { if (!menu.contains(e.target)) setOpen(false); });
+  document.addEventListener('keydown', function (e) { if (e.key === 'Escape') setOpen(false); });
+  window.addEventListener('resize', function () { if (window.innerWidth >= 860) setOpen(false); });
+})();
