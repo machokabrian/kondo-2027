@@ -5,7 +5,7 @@
 // Videos show their first frame in the strip; tap to play with controls.
 // Optional for videos: poster: "clip1.jpg"  (a cover picture)
 var GALLERY = [
-  { type: "image", src: "gallery-portrait.jpg", alt: "Senator Kondo portrait" },
+  { type: "image", src: "gallery-portrait.jpg", alt: "Senator Valentine Kondo portrait" },
   { type: "image", src: "poster.jpg", alt: "Campaign poster" },
   { type: "image", src: "card.jpg", alt: "Campaign card" },
   // { type: "video", src: "clip1.mp4" },
