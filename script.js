@@ -61,36 +61,40 @@ on('cp', function () {
   }).join('');
 })();
 
-// ---------- Gallery: photos + short videos, auto-scrolling ----------
+// ---------- Gallery: named photos + short videos, auto-scrolling ----------
 (function () {
-  var g = $('gl'), lb = $('lb'), lbi = $('lbi'), lbv = $('lbv');
+  var g = $('gl'), lb = $('lb'), lbi = $('lbi'), lbv = $('lbv'), lbc = $('lbc');
   if (!g || !lb) return;
   var items = (typeof GALLERY !== 'undefined' ? GALLERY : []);
   if (!items.length) { g.parentNode.style.display = 'none'; return; }
   var html = '';
   for (var round = 0; round < 2; round++) {          // listed twice for the endless loop
     items.forEach(function (it, k) {
+      var label = it.name ? '<span class="nm2">' + esc(it.name) + '</span>' : '';
       if (it.type === 'video') {
         html += '<div class="gi" data-k="' + k + '"><video src="' + esc(it.src) + '#t=0.1" ' +
           (it.poster ? 'poster="' + esc(it.poster) + '" ' : '') +
-          'preload="metadata" muted playsinline></video><span class="pl">▶</span></div>';
+          'preload="metadata" muted playsinline></video><span class="pl">▶</span>' + label + '</div>';
       } else {
-        html += '<div class="gi" data-k="' + k + '"><img src="' + esc(it.src) + '" alt="' + esc(it.alt || '') + '"></div>';
+        html += '<div class="gi" data-k="' + k + '"><img src="' + esc(it.src) + '" alt="' + esc(it.name || it.alt || '') +
+          '" loading="lazy">' + label + '</div>';
       }
     });
   }
   g.innerHTML = html;
+  g.style.animationDuration = Math.max(24, items.length * 6) + 's';
   function closeLb() { lb.classList.remove('o'); lbv.pause(); lbv.removeAttribute('src'); lbv.style.display = 'none'; lbi.style.display = 'none'; }
   g.addEventListener('click', function (e) {
     var box = e.target.closest ? e.target.closest('.gi') : null;
     if (!box) return;
     var it = items[+box.getAttribute('data-k')];
+    lbc.textContent = it.name || '';
     if (it.type === 'video') {
       lbi.style.display = 'none'; lbv.style.display = 'block'; lbv.src = it.src;
       if (it.poster) lbv.poster = it.poster;
       lb.classList.add('o'); lbv.play();
     } else {
-      lbv.style.display = 'none'; lbi.style.display = 'block'; lbi.src = it.src; lb.classList.add('o');
+      lbv.style.display = 'none'; lbi.style.display = 'block'; lbi.src = it.src; lbi.alt = it.name || ''; lb.classList.add('o');
     }
   });
   lb.addEventListener('click', function (e) { if (e.target !== lbv) closeLb(); });
