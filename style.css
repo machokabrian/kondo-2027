@@ -1,4 +1,4 @@
-/* ===== PPK theme: green, black, white ===== */
+/* ===== Kondo theme: green, black, white ===== */
 :root{--bg:#0a0d0a;--card:#141a14;--line:#223022;--tx:#ffffff;--mu:#b9c4b9;--g:#16a02b;--g2:#0e7a1f;color-scheme:dark;box-sizing:border-box;--gh:130px;padding-bottom:calc(64px + env(safe-area-inset-bottom,0px))}
 *{box-sizing:inherit}
 html{scroll-behavior:smooth;scroll-padding-top:calc(76px + env(safe-area-inset-top,0px))}
@@ -34,9 +34,6 @@ nav{display:flex;justify-content:space-between;align-items:center;gap:8px;paddin
 /* hero */
 .hero{display:grid;gap:24px;padding:20px 0 40px;align-items:center}
 @media(min-width:760px){.hero{grid-template-columns:1.1fr .9fr}}
-.party{display:flex;align-items:center;gap:12px;background:var(--card);border:1px solid var(--line);border-left:4px solid var(--g);border-radius:12px;padding:8px 14px 8px 8px;margin-bottom:18px;font-size:13px;color:var(--mu);width:max-content;max-width:100%}
-.party img{width:52px;height:52px;border-radius:50%;background:#fff;flex:none}
-.party b{color:#fff;letter-spacing:.04em}
 .sm{letter-spacing:.4em;font-size:13px;color:var(--mu)}
 h1{font-size:clamp(56px,16vw,104px);line-height:.95;margin:6px 0;font-weight:800}
 .fn{display:block;font-size:clamp(26px,8vw,46px);letter-spacing:.14em;font-weight:700;line-height:1.1;margin-bottom:6px}
@@ -148,8 +145,7 @@ footer a{color:var(--g)}
   h3{font-size:22px}
   section{padding:32px 0}
   .btns .b{flex:1 1 100%;text-align:center}
-  .party{font-size:12px}
-  .st b{font-size:17px}
+    .st b{font-size:17px}
   .st div{font-size:12px;padding:12px 4px}
   .ev .d{min-width:56px;padding:8px}
   footer .w{flex-direction:column;align-items:flex-start}
